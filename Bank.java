@@ -1,5 +1,5 @@
-class LowBalanceException extends Exception {
-    LowBalanceException(String s) {
+class LowBalance extends Exception {
+    LowBalance(String s) {
         super(s);
     }
 }
@@ -7,9 +7,9 @@ class LowBalanceException extends Exception {
 class Bank {
     double balance = 5000;
 
-    void withdraw(double amount) throws LowBalanceException {
+    void withdraw(double amount) throws LowBalance {
         if (amount > balance) {
-            throw new LowBalanceException("Not enough balance!");
+            throw new LowBalance("Not enough balance!");
         } else {
             balance -= amount;
             System.out.println("Withdrawal successful. Remaining balance: " + balance);
@@ -21,7 +21,7 @@ class Bank {
         try {
             try {
                 b.withdraw(7000);
-            } catch (LowBalanceException e) {
+            } catch (LowBalance e) {
                 System.out.println(e.getMessage());
             }
 
